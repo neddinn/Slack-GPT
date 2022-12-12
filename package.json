@@ -14,7 +14,14 @@
     "@slack/socket-mode": "^1.3.2",
     "@slack/web-api": "^6.8.0",
     "@types/node": "^18.0.6",
-    "chatgpt": "1.1.3"
+    "chatgpt": "2.3.0",
+    "puppeteer": "^19.4.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "node": "^18.12.1"
+  },
+   "engines" : { 
+    "node" : ">=18.0.0"
+  }
 }

@@ -1,4 +1,4 @@
-import { ChatGPTAPI } from 'chatgpt';
+import { getOpenAIAuth, ChatGPTAPI } from 'chatgpt';
 import { SocketModeClient } from '@slack/socket-mode';
 import { WebClient } from '@slack/web-api';
 
@@ -12,7 +12,16 @@ const webClient = new WebClient(process.env.SLACK_BOT_TOKEN);
 })();
 
 async function sendMessage(text) {
-  const api = new ChatGPTAPI({ sessionToken: process.env.SESSION_TOKEN });
+  console.log('opening puppeteer....')
+  const openAIAuth = await getOpenAIAuth({
+    email: process.env.EMAIL,
+    password: process.env.PASSWORD
+  });
+
+  console.log('openAIAuth...', openAIAuth)
+
+  const api = new ChatGPTAPI({ ...openAIAuth })
+
   console.log('ensuring auth...')
   await api.ensureAuth();
   console.log('sending message...')
